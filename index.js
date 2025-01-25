@@ -6,14 +6,14 @@ const { default: get_all_data } = require('./get/get_data');
 const init = async () => {
 
     const server = Hapi.server({
-        port: 3000,
+        port: 4000,
         host: 'localhost'
     });
-        server.route({
+    server.route({
         method: 'GET',
         path: '/get-all-data',
         handler: async () => {
-           return await get_all_data()
+            return await get_all_data()
         }
     });
 
