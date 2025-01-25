@@ -7,13 +7,16 @@ const init = async () => {
 
     const server = Hapi.server({
         port: 4000,
-        host: 'localhost'
+        host: 'localhost',
+        routes: {
+            cors: true
+        }
     });
     server.route({
         method: 'GET',
-        path: '/get-all-data',
-        handler: async () => {
-            return await get_all_data()
+        path: '/get-all-data/{name?}',
+        handler: async (request, h) => {
+            return request.params.name ? get_all_data(`?search=${request.params.name}`) : get_all_data('');
         }
     });
 
